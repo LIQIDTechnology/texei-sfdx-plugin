@@ -219,6 +219,9 @@ export default class Export extends SfdxCommand {
       // FIXME: Exclude value at 0 for now :'(
       //Object.keys(record).forEach(key => (!record[key] && record[key] !== undefined) && delete record[key]);
 
+      // keep original recordId in attributes for matching contentDocumentLinks, etc.
+      record.attributes.sourceId = record.Id;
+
       // Delete unused fields
       delete record.Id;
       delete record.RecordType;
